@@ -1,50 +1,28 @@
 import torch
-import torch.optim as optim
-from models.ssd import SSD
-from utils.dataset import BrazilianTrafficLightDataset
-from torch.utils.data import DataLoader
+from models.refinedlite.model import RefineDetLite
+from models.refinedlite.loss import RefineDetLiteLoss
 
-def train():
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    
-    # Hiperparâmetros
-    num_classes = 5  # Ajuste baseado nas classes de sinais brasileiros
-    batch_size = 32
-    learning_rate = 0.001
-    num_epochs = 100
-    
-    # Modelo
-    model = SSD(num_classes).to(device)
-    optimizer = optim.Adam(model.parameters(), lr=learning_rate)
-    
-    # Dataset
-    train_dataset = BrazilianTrafficLightDataset('data/train')
-    train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
-    
-    # Loop de treinamento
-    for epoch in range(num_epochs):
-        model.train()
-        for batch_idx, (images, targets) in enumerate(train_loader):
-            images = images.to(device)
-            targets = targets.to(device)
-            
-            # Forward
-            loc, conf = model(images)
-            
-            # Calcular perda
-            loss = criterion(loc, conf, targets)
-            
-            # Backward
-            optimizer.zero_grad()
-            loss.backward()
-            optimizer.step()
-            
-            if batch_idx % 10 == 0:
-                print(f'Epoch: {epoch}, Batch: {batch_idx}, Loss: {loss.item():.4f}')
-                
-        # Salvar checkpoint
-        if epoch % 10 == 0:
-            torch.save(model.state_dict(), f'checkpoints/model_epoch_{epoch}.pth')
+# Inicializar modelo
+model = RefineDetLite(num_classes=4, input_size=320)  # 3 classes + background
+criterion = RefineDetLiteLoss(num_classes=4)
 
-if __name__ == '__main__':
-    train()
+# Dados de exemplo
+batch_size = 2
+x = torch.randn(batch_size, 3, 320, 320)
+
+# Forward pass
+cls_preds, reg_preds = model(x)
+
+# Treinar
+optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
+optimizer.zero_grad()
+
+# Simular targets
+cls_targets = torch.randint(0, 4, (batch_size, cls_preds.size(1)))
+reg_targets = torch.randn_like(reg_preds)
+pos_mask = torch.ones_like(cls_targets, dtype=torch.bool)
+
+loss = criterion((cls_preds, reg_preds), 
+                (cls_targets, reg_targets, pos_mask))
+loss.backward()
+optimizer.step()
