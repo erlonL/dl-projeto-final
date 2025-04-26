@@ -2,6 +2,99 @@
 
 Detecção e Segmentação de Semáforos de trânsito !
 
+## Introdução
+
+Projeto Final da Disciplina de Deep Learning
+
+---
+
+## Requisitos do Sistema
+
+### Python
+
+Este projeto requer Python 3.12.3. Para verificar sua versão do Python, execute:
+
+```bash
+python --version
+```
+
+Se você não tem a versão correta, aqui estão as opções para instalação:
+
+#### Linux (Ubuntu/Debian)
+
+```bash
+sudo apt update
+sudo apt install software-properties-common
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt install python3.12
+```
+
+#### MacOS (usando Homebrew)
+
+```bash
+brew install python@3.12
+```
+
+#### Windows
+
+1. Baixe o instalador do Python 3.12.3 em https://www.python.org/downloads/
+2. Execute o instalador
+3. Marque a opção "Add Python 3.12 to PATH"
+4. Clique em "Install Now"
+
+## Instalação do Projeto
+
+1. Clone o repositório:
+
+```bash
+git clone https://github.com/erlonL/stock-analyzer-bot.git
+cd stock-analyzer-bot
+```
+
+2. Instale o gerenciador de pacotes `uv`:
+
+Siga as instruções na [documentação oficial do uv](https://docs.astral.sh/uv/) para instalar o `uv`.
+
+3. Instale as dependências do projeto:
+
+```bash
+uv sync
+```
+
+4. (Opcional) Crie um kernel para rodar os Jupyter Notebooks:
+
+Primeiro, adicione o `ipykernel` como dependência de desenvolvimento:
+
+```bash
+uv add --dev ipykernel
+```
+
+Depois, crie o kernel:
+
+```bash
+uv run ipython kernel install --user --env VIRTUAL_ENV $(pwd)/.venv --name=stock-analyzer-bot
+```
+
+## Como Usar
+
+O projeto pode ser executado de duas formas:
+
+1. Usando o `uv`:
+
+```bash
+uv run example.py
+```
+
+2. Ativando o ambiente virtual manualmente e rodando o script diretamente:
+
+```bash
+source .venv/bin/activate  # Linux/MacOS
+# ou
+.venv\Scripts\activate     # Windows
+
+python example.py
+```
+
 ## Abordagem
 
 1. Primeiro detectar onde está o objeto na imagem
