@@ -47,8 +47,8 @@ brew install python@3.12
 1. Clone o repositório:
 
 ```bash
-git clone https://github.com/erlonL/stock-analyzer-bot.git
-cd stock-analyzer-bot
+git clone git@github.com:erlonL/dl-projeto-final.git
+cd dl-projeto-final
 ```
 
 2. Instale o gerenciador de pacotes `uv`:
@@ -72,7 +72,7 @@ uv add --dev ipykernel
 Depois, crie o kernel:
 
 ```bash
-uv run ipython kernel install --user --env VIRTUAL_ENV $(pwd)/.venv --name=stock-analyzer-bot
+uv run ipython kernel install --user --env VIRTUAL_ENV $(pwd)/.venv --name=dl-projeto-final
 ```
 
 ## Como Usar
