@@ -9,4 +9,11 @@ wheels/
 # Virtual environments
 .venv
 
-archive/
+archive/pytorch-ssd-ufu-main/inputs/
+archive/pytorch-ssd-ufu-main/outputs/
+archive/pytorch-ssd-ufu-main/logs/*
+
+archive/thesis-ufu-mmp/images/*
+archive/thesis-ufu-mmp/annotations/*
+
+openimages/
