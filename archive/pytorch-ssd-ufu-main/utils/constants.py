@@ -1,0 +1,2 @@
+BACKGROUND_INDEX = -1
+COLOR = (0, 255, 0)
