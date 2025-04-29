@@ -126,3 +126,11 @@ https://journals-sol.sbc.org.br/index.php/jbcs/article/view/3678/2794
 https://arxiv.org/abs/1703.06870  
 https://github.com/xuexingyu24/License_Plate_Detection_Pytorch  
 Region Proposal Network (RPN)
+
+---
+
+Para fazer um !pip install gigante com as dependências usando uv
+
+```bash
+uv pip freeze | paste -sd' ' - | sed 's/^/!pip install /'
+```

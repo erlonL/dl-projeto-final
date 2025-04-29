@@ -17,3 +17,6 @@ archive/thesis-ufu-mmp/images/*
 archive/thesis-ufu-mmp/annotations/*
 
 openimages/
+runs/
+images/
+labels/
