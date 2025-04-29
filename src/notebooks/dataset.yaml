@@ -1,7 +1,7 @@
 
-path: data/
+path: ./datasets/
 train: images/train
 val: images/val
 
-names:
-  0: traffic_light
+nc: 1  # número de classes
+names: ['traffic_light']  # nome das classes
