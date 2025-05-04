@@ -20,3 +20,13 @@ openimages/
 runs/
 images/
 labels/
+
+_train\ copy.yaml
+_train.yaml
+_test.yaml
+*.png
+*.jpg
+*.jpeg
+*.pkl
+
+!random-jp*
